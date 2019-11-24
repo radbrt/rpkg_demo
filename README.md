@@ -56,8 +56,8 @@ Vi forklarer ikke git inngående her, og selv om noen kommandoer forklares forve
 	
     - Sjekk pakken ved å kjøre CMD+SHIFT+E: Nå får du plutselig en ny feilmelding om at du har udokumentert kode. 
     - Dokumentasjon av funksjonen kan skrives over selve funksjonen, i en enkel men litt spesiell markdown-aktig kode, som inneholder Tittel, Beskrivelse, Parametre, og Eksempler. Lim inn over funksjonen:
-    ```
-    #' Hyperbolic tangent function
+  ```
+  #' Hyperbolic tangent function
 	#' Hypertan function for normalization.
 	#' @param x Input value
 	#' @examples
@@ -81,18 +81,35 @@ Vi forklarer ikke git inngående her, og selv om noen kommandoer forklares forve
 
 	Hvis du har et prosjekt som noen andre bruker samtidig som at du videreutvikler det, er det et poeng at du skal kunne bruke github når du utvikler samtidig som at andre skal kunne installere pakken din fra github. For å ordne dette kan du lage en ny branch, `dev`, eller lignende, hvor du utvikler, og som du kan merge med master branchen når det passer. Vi har dessverre ikke tid til å gå gjennom hva brancher er her.
 	- Oppdater .travis.yml til å si at tester kun skal kjøres på master-branchen:
-		```
+	```
 		branches:
 	  		only:
 	    	- master
-	    ```
+	```
 	- git add, commit og push endringen til master.
 
 	Så, lage en ny `dev` branch som vi kan jobbe på og merge til tider.
 	- `git branch dev` Lager en ny branch med navnet `dev`
 	- `git checkout dev` sier til git at det nå er `dev` branchen du jobber på
-	- Gjør en endring, add, commit, og når vi nå pusher må vi være påpasselige med å pushe den nye branchen til github: `git push origin dev` spesifiserer at det er `dev` branchen som pushes.
+	- Legg inn en ny funksjon, dokumentasjon og test, f.eks. logistisk sigmoid. Lag en ny fil, `R/logisitic.R`:
+	```
+    #' Logistic sigmoid function
+    #' Logistic sigmoid function for normalization.
+    #' @param x Input value
+    #' @examples
+    #' logistic_sigmoid(1.5)
+    
+    logistic_sigmoid <- function(x) {
+      1/(1+exp(-x))
+    }
+  ```
+  Vi trenger også en test for koden, så lag en ny fil, `tests/testthat/test_sigmoid.R`:
+  ```
+    test_that("Logistic function intercept",
+            expect_equal(logistic_sigmoid(0), 0.5))
+  ```
+	Når dette er på plass kan du kjøre tester lokalt (CMD+SHIFT+T) og test-bygge (CMD+SHIFT+E). Hvis dette går greit, lag en ny commit (husk at du er på dev-branchen nå), og push til github med `git push origin dev`.
 	
-  Når du selv ønsker kan du merge dev og master via en "pull request", noe du kan gjøre direkte på github. Da får du mulighet til å se gjennom forskjellene i koden, eventuelt skrive en kommentar eller rette noe, og kjøre travis-testene før koden merges.
+  Nå kan du merge dev og master via en "pull request" direkte på github. Da får du mulighet til å se gjennom forskjellene i koden, eventuelt skrive en kommentar eller rette noe, og kjøre travis-testene før koden merges.
 
 
