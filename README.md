@@ -47,15 +47,16 @@ Vi forklarer ikke git inngående her, og selv om noen kommandoer forklares forve
 	test_that("hypertan function intercept",
           		expect_equal(hypertan(0), 0)
     		 )
-    ```
+  ```
     - Kjør testene ved å trykke CMD+SHIFT+T: du skal få én test med OK status.
 
 6. Dokumentasjon
 
-	Vi har laget en ny funksjon, men ikke dokumentert den enda. I pakker må hver funksjon, og hvert datasett dersom du inkluderer eksempeldata, dokumenteres på en bestemt måte. Dette er den dokumentasjonen som brukerne ser, og den bør derfor være lett forståelig.
-	
-    - Sjekk pakken ved å kjøre CMD+SHIFT+E: Nå får du plutselig en ny feilmelding om at du har udokumentert kode. 
-    - Dokumentasjon av funksjonen kan skrives over selve funksjonen, i en enkel men litt spesiell markdown-aktig kode, som inneholder Tittel, Beskrivelse, Parametre, og Eksempler. Lim inn over funksjonen:
+Vi har laget en ny funksjon, men ikke dokumentert den enda. I pakker må hver funksjon, og hvert datasett dersom du inkluderer eksempeldata, dokumenteres på en bestemt måte. Dette er den dokumentasjonen som brukerne ser, og den bør derfor være lett forståelig.
+
+ - Sjekk pakken ved å kjøre CMD+SHIFT+E: Nå får du plutselig en ny feilmelding om at du har udokumentert kode. 
+ - Dokumentasjon av funksjonen kan skrives over selve funksjonen, i en enkel men litt spesiell markdown-aktig kode, som inneholder Tittel, Beskrivelse, Parametre, og Eksempler. Lim inn over funksjonen:
+    
   ```
   #' Hyperbolic tangent function
 	#' Hypertan function for normalization.
@@ -108,6 +109,7 @@ Vi forklarer ikke git inngående her, og selv om noen kommandoer forklares forve
     test_that("Logistic function intercept",
             expect_equal(logistic_sigmoid(0), 0.5))
   ```
+  
 	Når dette er på plass kan du kjøre tester lokalt (CMD+SHIFT+T) og test-bygge (CMD+SHIFT+E). Hvis dette går greit, lag en ny commit (husk at du er på dev-branchen nå), og push til github med `git push origin dev`.
 	
   Nå kan du merge dev og master via en "pull request" direkte på github. Da får du mulighet til å se gjennom forskjellene i koden, eventuelt skrive en kommentar eller rette noe, og kjøre travis-testene før koden merges.
