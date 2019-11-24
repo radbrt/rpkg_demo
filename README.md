@@ -82,11 +82,12 @@ Vi har laget en ny funksjon, men ikke dokumentert den enda. I pakker må hver fu
 
 	Hvis du har et prosjekt som noen andre bruker samtidig som at du videreutvikler det, er det et poeng at du skal kunne bruke github når du utvikler samtidig som at andre skal kunne installere pakken din fra github. For å ordne dette kan du lage en ny branch, `dev`, eller lignende, hvor du utvikler, og som du kan merge med master branchen når det passer. Vi har dessverre ikke tid til å gå gjennom hva brancher er her.
  - Oppdater .travis.yml til å si at tester kun skal kjøres på master-branchen:
-	```
-		branches:
-	  		only:
-	    	- master
-	```
+ 
+```
+  branches:
+	  only:
+	  - master
+```
  - git add, commit og push endringen til master.
 
 Deretter, lag en ny `dev` branch som vi kan jobbe på og merge til tider.
@@ -94,25 +95,26 @@ Deretter, lag en ny `dev` branch som vi kan jobbe på og merge til tider.
  - `git branch dev` Lager en ny branch med navnet `dev`
  - `git checkout dev` sier til git at det nå er `dev` branchen du jobber på
  - Legg inn en ny funksjon, dokumentasjon og test, f.eks. logistisk sigmoid. Lag en ny fil, `R/logisitic.R`:
-	```
-    #' Logistic sigmoid function
-    #' Logistic sigmoid function for normalization.
-    #' @param x Input value
-    #' @examples
-    #' logistic_sigmoid(1.5)
-    
-    logistic_sigmoid <- function(x) {
-      1/(1+exp(-x))
-    }
-  ```
+ 
+```
+  #' Logistic sigmoid function
+  #' Logistic sigmoid function for normalization.
+  #' @param x Input value
+  #' @examples
+  #' logistic_sigmoid(1.5)
   
-  Vi trenger også en test for koden, så lag en ny fil, `tests/testthat/test_sigmoid.R`:
+  logistic_sigmoid <- function(x) {
+    1/(1+exp(-x))
+  }
+```
   
-  ```
-    test_that("Logistic function intercept",
-            expect_equal(logistic_sigmoid(0), 0.5))
-  ```
+Vi trenger også en test for koden, så lag en ny fil, `tests/testthat/test_sigmoid.R`:
   
+```
+  test_that("Logistic function intercept",
+          expect_equal(logistic_sigmoid(0), 0.5))
+```
+
 Når dette er på plass kan du kjøre tester lokalt (CMD+SHIFT+T) og test-bygge (CMD+SHIFT+E). Hvis dette går greit, lag en ny commit (husk at du er på dev-branchen nå), og push til github med `git push origin dev`.
 	
 Nå kan du merge dev og master via en "pull request" direkte på github. Da får du mulighet til å se gjennom forskjellene i koden, eventuelt skrive en kommentar eller rette noe, og kjøre travis-testene før koden merges.
