@@ -64,35 +64,36 @@ Vi har laget en ny funksjon, men ikke dokumentert den enda. I pakker må hver fu
 	#' @examples
 	#' hypertan(1.5)
 	```
-	- Lagre, og deretter kjør `devtools::document()`, som genererer den egentlige dokumentasjonen fra kommentarene over. Du skal nå ha fått melding om at det har blitt skrevet en ny fil.
-	- Kjør CMD+SHIFT+E på nytt. Denne gangen skal du få 0 Errors, 0 Warnings og 0 Notes.
+ - Lagre, og deretter kjør `devtools::document()`, som genererer den egentlige dokumentasjonen fra kommentarene over. Du skal nå ha fått melding om at det har blitt skrevet en ny fil.
+ - Kjør CMD+SHIFT+E på nytt. Denne gangen skal du få 0 Errors, 0 Warnings og 0 Notes.
 
 	Nå kan du laste pakken din (CMD+SHIFT+B), og kjøre `?hypertan` i konsollen for å få opp manualen til funksjonen din, og du ser resultatet av den markupen du skrev.
 
 7. Push til github
 
 	Nå er egentlig pakken ferdig, det gjenstår bare å laste den opp til github. Vi har gjort alt grunnarbeidet, og det eneste som gjenstår nå er de vanlige git-tingene, som kan gjøres enten fra terminalen eller grafisk fra Rstudio.
-	- `git add .` Legger til alle filer slik at git holder øye med de.
-	- `git commit -m "I can haz a package"` Committer koden (lager en milepæl), og legger ved en liten melding som forklarer hva du har gjort (siden forrige gang du committet).
-	- `git push origin master` Sender koden videre til `origin` destinasjonen, som er den URL'en fra github-repoet vi lagde.
+ - `git add .` Legger til alle filer slik at git holder øye med de.
+ - `git commit -m "I can haz a package"` Committer koden (lager en milepæl), og legger ved en liten melding som forklarer hva du har gjort (siden forrige gang du committet).
+ - `git push origin master` Sender koden videre til `origin` destinasjonen, som er den URL'en fra github-repoet vi lagde.
 
 	Hvis du går inn på travis-ci.com nå, ser du at pakken din holder på å kjøre. Hvis alt går greit, skal du se et stort, grønt og hyggelig resultat, og i README'en din som vises på github kommer du til å se en tøff grønn knapp som sier "build passing".
 
 8. Bruk master/dev branches, og begrens travis til master-branchen
 
 	Hvis du har et prosjekt som noen andre bruker samtidig som at du videreutvikler det, er det et poeng at du skal kunne bruke github når du utvikler samtidig som at andre skal kunne installere pakken din fra github. For å ordne dette kan du lage en ny branch, `dev`, eller lignende, hvor du utvikler, og som du kan merge med master branchen når det passer. Vi har dessverre ikke tid til å gå gjennom hva brancher er her.
-	- Oppdater .travis.yml til å si at tester kun skal kjøres på master-branchen:
+ - Oppdater .travis.yml til å si at tester kun skal kjøres på master-branchen:
 	```
 		branches:
 	  		only:
 	    	- master
 	```
-	- git add, commit og push endringen til master.
+ - git add, commit og push endringen til master.
 
-	Så, lage en ny `dev` branch som vi kan jobbe på og merge til tider.
-	- `git branch dev` Lager en ny branch med navnet `dev`
-	- `git checkout dev` sier til git at det nå er `dev` branchen du jobber på
-	- Legg inn en ny funksjon, dokumentasjon og test, f.eks. logistisk sigmoid. Lag en ny fil, `R/logisitic.R`:
+Deretter, lag en ny `dev` branch som vi kan jobbe på og merge til tider.
+
+ - `git branch dev` Lager en ny branch med navnet `dev`
+ - `git checkout dev` sier til git at det nå er `dev` branchen du jobber på
+ - Legg inn en ny funksjon, dokumentasjon og test, f.eks. logistisk sigmoid. Lag en ny fil, `R/logisitic.R`:
 	```
     #' Logistic sigmoid function
     #' Logistic sigmoid function for normalization.
@@ -104,14 +105,16 @@ Vi har laget en ny funksjon, men ikke dokumentert den enda. I pakker må hver fu
       1/(1+exp(-x))
     }
   ```
+  
   Vi trenger også en test for koden, så lag en ny fil, `tests/testthat/test_sigmoid.R`:
+  
   ```
     test_that("Logistic function intercept",
             expect_equal(logistic_sigmoid(0), 0.5))
   ```
   
-	Når dette er på plass kan du kjøre tester lokalt (CMD+SHIFT+T) og test-bygge (CMD+SHIFT+E). Hvis dette går greit, lag en ny commit (husk at du er på dev-branchen nå), og push til github med `git push origin dev`.
+Når dette er på plass kan du kjøre tester lokalt (CMD+SHIFT+T) og test-bygge (CMD+SHIFT+E). Hvis dette går greit, lag en ny commit (husk at du er på dev-branchen nå), og push til github med `git push origin dev`.
 	
-  Nå kan du merge dev og master via en "pull request" direkte på github. Da får du mulighet til å se gjennom forskjellene i koden, eventuelt skrive en kommentar eller rette noe, og kjøre travis-testene før koden merges.
+Nå kan du merge dev og master via en "pull request" direkte på github. Da får du mulighet til å se gjennom forskjellene i koden, eventuelt skrive en kommentar eller rette noe, og kjøre travis-testene før koden merges.
 
 
