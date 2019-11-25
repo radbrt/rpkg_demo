@@ -52,6 +52,8 @@ test_that("hypertan function intercept",
   		 )
 ```
 
+Disse funksjonsnavnene er nesten selvforklarende, men vi definerer altså en eller flere tester i `test_that` funksjonen. Første argument er en forklarende tekst for testen(e), deretter kommer en eller flere konkrete tester sammen med det forventede resultatet. Disse testene er typisk i form av at funksjonen din, med en gitt input-verdi, skal returnere en bestemt output. Her bruker vi en funksjon som sjekker om to verdier er like (`expect_equal`) for å sjekke om `hypertan(0)` er lik 0, noe vi vet at den skal være. Det finnes andre funksjoner, som f.eks. `expect_less_than` som er selvfoklarende, eller `expect_error` for tilfeller hvor du vil at funksjonen din skal returnere en error. Hvis du vil ha flere tester sammen i en `test_that` funksjon, skiller du disse med mellomrom.
+
  - Kjør testene ved å trykke CMD+SHIFT+T: du skal få én test med OK status.
 
 6. Dokumentasjon
@@ -115,8 +117,8 @@ Deretter, lag en ny `dev` branch som vi kan jobbe på og merge til tider.
 Vi trenger også en test for koden, så lag en ny fil, `tests/testthat/test_sigmoid.R`:
   
 ```
-  test_that("Logistic function intercept",
-          expect_equal(logistic_sigmoid(0), 0.5))
+test_that("Logistic function intercept",
+        expect_equal(logistic_sigmoid(0), 0.5))
 ```
 
 Når dette er på plass kan du kjøre tester lokalt (CMD+SHIFT+T) og test-bygge (CMD+SHIFT+E). Hvis dette går greit, lag en ny commit (husk at du er på dev-branchen nå), og push til github med `git push origin dev`.
