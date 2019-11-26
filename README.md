@@ -90,9 +90,9 @@ Hvis du har et prosjekt som noen andre bruker samtidig som at du videreutvikler 
  - Oppdater .travis.yml til å si at tester kun skal kjøres på master-branchen:
  
 ```
-  branches:
-	  only:
-	  - master
+branches:
+  only:
+  - master
 ```
  - git add, commit og push endringen til master.
 
