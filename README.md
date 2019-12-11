@@ -1,5 +1,5 @@
 
-# rmmepkg
+# R-pakke med unit-tester og ci/cd walkthrough
 En ikke-pakke for å vise hvordan lage R-pakker med tester og Travis.
 
 <!-- badges: start -->
